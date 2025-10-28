@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Estudo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Calculadora Container -->
+    <section class="container">
+        <!-- Visor de equações -->
+        <div class="visor" id="visor">
+            <p id="visorInfo"></p>
+        </div>
+
+        <!-- Botões -->
+        <div class="grid">
+            <!-- 
+            Classe para operadores = operadores
+            Classe para números = numbers 
+            -->
+            <section class="grid">
+
+                <div class="topGrid">
+                    <button class="operadores" value="+">+</button>
+                    <button class="operadores" value="-">-</button>
+                    <button class="operadores" value="/">/</button>
+                    <button class="operadores" value="*">x</button>
+                </div>
+                
+                <div class="gridNumbers">
+                    <button class="numbers" value="1">1</button>
+                    <button class="numbers" value="2">2</button>
+                    <button class="numbers" value="3">3</button>
+                    <button class="numbers" value="4">4</button>
+                    <button class="numbers" value="5">5</button>
+                    <button class="numbers" value="6">6</button>
+                    <button class="numbers" value="7">7</button>
+                    <button class="numbers" value="8">8</button>
+                    <button class="numbers" value="9">9</button>
+                    <button class="operadores" value="(">(</button>
+                    <button class="numbers" value="0">0</button>
+                    <button class="operadores" value=")">)</button>
+                </div>
+                
+                <div>
+                    <!-- function -->
+                    <button class="operadores" id="delete">DEL</button>
+                    <button class="operadores" value=".">,</button>
+                    <button class="operadores" id="result">=</button>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
