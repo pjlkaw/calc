@@ -1,0 +1,6 @@
+# Pasta de dependências do Node.js
+node_modules/
+
+# Arquivos de log e temporários (opcional, mas recomendado)
+*.log
+.DS_Store
