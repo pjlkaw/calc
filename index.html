@@ -25,10 +25,10 @@
             <section class="grid">
 
                 <div class="topGrid">
-                    <button class="numbers" value="+">+</button>
-                    <button class="numbers" value="-">-</button>
-                    <button class="numbers" value="/">/</button>
-                    <button class="numbers" value="*">x</button>
+                    <button class="numbers operadores" value="+">+</button>
+                    <button class="numbers operadores" value="/">/</button>
+                    <button class="numbers operadores" value="-">-</button>
+                    <button class="numbers operadores" value="*">x</button>
                 </div>
                 
                 <div class="gridNumbers">
@@ -41,22 +41,23 @@
                     <button class="numbers" value="7">7</button>
                     <button class="numbers" value="8">8</button>
                     <button class="numbers" value="9">9</button>
-                    <button class="numbers" value="(">(</button>
+                    <button class="numbers operadores" value="(">(</button>
                     <button class="numbers" value="0">0</button>
-                    <button class="numbers" value=")">)</button>
+                    <button class="numbers operadores" value=")">)</button>
                 </div>
                 
                 <div>
                     <!-- function -->
-                     <button class="numbers" id="clear">C</button>
-                    <button class="numbers" id="delete">DEL</button>
-                    <button class="numbers" value=".">,</button>
-                    <button class="numbers" id="result" onclick="resultado()">=</button>
+                     <button class="numbers operadores" id="clear">C</button>
+                    <button class="numbers operadores" id="delete">DEL</button>
+                    <button class="numbers operadores" value=".">,</button>
+                    <button class="numbers operadores" id="result" onclick="resultado()">=</button>
                 </div>
             </section>
         </div>
     </section>
 
+    <script src="https://cdn.jsdelivr.net/npm/mathjs@11.11.0/lib/browser/math.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
