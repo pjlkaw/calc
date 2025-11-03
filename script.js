@@ -3,9 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 //variavel de controle para saber estado da equação
-let ultimoResultado = false 
-let ultimoResultadoValor = 0
-let valorSalvo = 0
+let ultimoResultado = false
 
 const visor = document.getElementById('visor')
 //por meio dessa variavel visor o código dos calculos deve se basear
@@ -16,38 +14,58 @@ function numerosOperadores() { //função de botões e visor
     //PARA CADA CLIQUE EM ALGUM BOTÂO 
     btnNumeros.forEach((botao) => {
         botao.addEventListener('click', () => {
-            //INDIVIDUALMENTE
-            let ultimoValorClicado = botao.value 
-            valoresEquacao.push(botao.value) // envia para a array de numeros
-            visor.innerHTML += ultimoValorClicado // envia para o visor
-            
-            // console.log(ultimoValorClicado)
+            let ultimoValorClicado = botao.value
 
-            // if (ultimoResultado == false) { //se não houver um ultimo resultado
-            //     return 
-            // }
-            // else if (ultimoResultado == true){
-            //     console.log(valorSalvo + "virou true")
-            // }
-            
+            // Numeros e operadores
+            const listaNumeros = !isNaN(parseFloat(ultimoValorClicado)) || ['(', ')', '.', ','].includes(ultimoValorClicado);
+            const listaOperadores = ['+', '-', '/', 'x'].includes(ultimoValorClicado); // .includes. -> se houver retona boleano
+            // true = int | false = + |
+
+            //VALIDAÇÃO COM if()
+            if (ultimoResultado) {
+                if (listaNumeros) {
+                    valoresEquacao = [] // clicou em numero = reiniciar a conta
+                }
+                ultimoResultado = false
+            }
+            if (ultimoValorClicado == "C") {
+                valoresEquacao = []
+                ultimoResultado = false
+                visor.innerHTML = ''
+                return
+            }
+            if (ultimoValorClicado == "DEL") {
+                valoresEquacao.pop()
+                ultimoResultado = false
+                atualizarVisor()
+                return
+            }
+            if (ultimoValorClicado === 'x') {
+                valoresEquacao.push('*')
+            }
+            else if (ultimoValorClicado === ',') {
+                valoresEquacao.push('.')
+            }
+            else {
+                valoresEquacao.push(botao.value) // envia para a array de numeros
+            }
+            atualizarVisor()
         })
     })
 }
 
 function resultado() {
+    ultimoResultado = true // serve para saber se há um resultado - vai ser usado na function numerosOperadores()
+
     //CALCULO BASE
-    const calculo = math.evaluate(valoresEquacao.join(""))  // math.evalute() -> faz o mesmo que eval() porem com math.js tem mais segurança de que não seja qualquer coisa executada
+    let calculo = math.evaluate(valoresEquacao.join(""))  // faz o mesmo que eval() porem com math.js tem mais segurança de que não seja qualquer coisa executada
     visor.innerHTML = calculo
 
+    valoresEquacao = [calculo.toString()];
+    console.log(valoresEquacao)
+}
 
-    // informan que tem um resultado guardado
-    // ultimoResultado = true
-    // ultimoResultadoValor = calculo
-
-    // valoresEquacao.join() // -> junta os valores da lista sem espaçamento
-
-
-    // recomeço de equação 
-    
-
-} 
+function atualizarVisor() {
+    const visorString = valoresEquacao.join('').replace(/\*/g, 'x').replace(/\./g, ',') // envia para o visor
+    visor.innerHTML = visorString || '0'
+}
