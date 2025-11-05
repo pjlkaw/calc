@@ -31,7 +31,7 @@ function numerosOperadores() { //função de botões e visor
             if (ultimoValorClicado == "C") {
                 valoresEquacao = []
                 ultimoResultado = false
-                visor.innerHTML = ''
+                visor.innerHTML = 0
                 return
             }
             if (ultimoValorClicado == "DEL") {

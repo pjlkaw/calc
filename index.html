@@ -13,7 +13,7 @@
     <section class="container">
         <!-- Visor de equações -->
         <div class="visor" id="visor">
-            <p id="visorInfo"></p>
+            <p id="visorInfo">0</p>
         </div>
 
         <!-- Botões -->
@@ -26,8 +26,8 @@
 
                 <div class="topGrid">
                     <button class="numbers operadores" value="+">+</button>
-                    <button class="numbers operadores" value="/">/</button>
                     <button class="numbers operadores" value="-">-</button>
+                    <button class="numbers operadores" value="/">/</button>
                     <button class="numbers operadores" value="*">x</button>
                 </div>
 
@@ -46,7 +46,7 @@
                     <button class="numbers operadores" value=")">)</button>
                 </div>
 
-                <div>
+                <div class="underGrid">
                     <!-- function -->
                     <button class="numbers operadores" id="clear" value="C">C</button>
                     <button class="numbers operadores" id="delete" value="DEL">DEL</button>
@@ -56,6 +56,11 @@
             </section>
         </div>
     </section>
+    <footer>
+        <p>Desenvolvido por:<a href="https://pjlkaw.github.io/Pedro_Bispo/" target="_blank">Pedro Bispo</a></p>
+        <p>2025</p>
+        <p>Todos os direitos reservados ©</p>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/mathjs@11.11.0/lib/browser/math.js"></script>
     <script src="script.js"></script>
