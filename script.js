@@ -29,15 +29,18 @@ function numerosOperadores() { //função de botões e visor
                 ultimoResultado = false
             }
             if (ultimoValorClicado == "C") {
+                ultimoResultado = false
                 valoresEquacao = []
                 ultimoResultado = false
                 visor.innerHTML = 0
                 return
             }
             if (ultimoValorClicado == "DEL") {
+                ultimoResultado = false
                 valoresEquacao.pop()
                 ultimoResultado = false
                 atualizarVisor()
+                console.log(valoresEquacao)
                 return
             }
             if (ultimoValorClicado === 'x') {
@@ -55,17 +58,39 @@ function numerosOperadores() { //função de botões e visor
 }
 
 function resultado() {
-    ultimoResultado = true // serve para saber se há um resultado - vai ser usado na function numerosOperadores()
-
-    //CALCULO BASE
-    let calculo = math.evaluate(valoresEquacao.join(""))  // faz o mesmo que eval() porem com math.js tem mais segurança de que não seja qualquer coisa executada
-    visor.innerHTML = calculo
-
-    valoresEquacao = [calculo.toString()];
-    console.log(valoresEquacao)
+    if (valoresEquacao.length < 1) {
+        return
+    }
+    else {
+        if (validarExpressao(valoresEquacao.join(''))) {
+            ultimoResultado = true // serve para saber se há um resultado - vai ser usado na function numerosOperadores()
+    
+            //CALCULO BASE
+            let calculo = math.evaluate(valoresEquacao.join(""))  // faz o mesmo que eval() porem com math.js tem mais segurança de que não seja qualquer coisa executada
+            valoresEquacao = []
+            visor.innerHTML = calculo
+    
+            valoresEquacao = [calculo.toString()];
+            console.log(valoresEquacao)
+        }
+        else {
+            return
+        }
+    }
 }
 
 function atualizarVisor() {
     const visorString = valoresEquacao.join('').replace(/\*/g, 'x').replace(/\./g, ',') // envia para o visor
     visor.innerHTML = visorString || '0'
+}
+
+function validarExpressao(exp) { //validar se a conta pode ser executada usando mathjs
+    try {
+        math.evaluate(exp)
+        return true;
+    }
+    catch {
+        alert('Essa equação não pode ser executada')
+        return false;
+    }
 }
