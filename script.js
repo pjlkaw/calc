@@ -62,7 +62,7 @@ function resultado() {
         return
     }
     else {
-        if (validarExpressao(valoresEquacao.join(''))) {
+        if (validarExpressao(valoresEquacao.join(''))) { //se válido e possivel a equação
             ultimoResultado = true // serve para saber se há um resultado - vai ser usado na function numerosOperadores()
 
             //CALCULO BASE
@@ -85,11 +85,11 @@ function atualizarVisor() {
 }
 
 function validarExpressao(exp) { //validar se a conta pode ser executada usando mathjs
-    try {
-        math.evaluate(exp)
+    try { //tentar
+        math.evaluate(exp) // valida a possibilidade da conta ser executada e retornta true
         return true;
     }
-    catch {
+    catch { //caso contrario aparece alerta e retorna false
         const alert = document.getElementById('alert')
         alert.className = 'alertOn'
         alert.innerHTML = "A expressão não pode ser realizada"
@@ -100,3 +100,4 @@ function validarExpressao(exp) { //validar se a conta pode ser executada usando 
     }
 }
 
+//enquanto o visor for 0, piscar - setTimeInterval(() => {}, 1000)
