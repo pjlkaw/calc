@@ -64,12 +64,12 @@ function resultado() {
     else {
         if (validarExpressao(valoresEquacao.join(''))) {
             ultimoResultado = true // serve para saber se há um resultado - vai ser usado na function numerosOperadores()
-    
+
             //CALCULO BASE
             let calculo = math.evaluate(valoresEquacao.join(""))  // faz o mesmo que eval() porem com math.js tem mais segurança de que não seja qualquer coisa executada
             valoresEquacao = []
             visor.innerHTML = calculo
-    
+
             valoresEquacao = [calculo.toString()];
             console.log(valoresEquacao)
         }
@@ -90,7 +90,13 @@ function validarExpressao(exp) { //validar se a conta pode ser executada usando 
         return true;
     }
     catch {
-        alert('Essa equação não pode ser executada')
+        const alert = document.getElementById('alert')
+        alert.className = 'alertOn'
+        alert.innerHTML = "A expressão não pode ser realizada"
+        setTimeout(() => {
+            alert.className = 'alertOff'
+        }, 2500)
         return false;
     }
 }
+
