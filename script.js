@@ -1,11 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     numerosOperadores();
+    visorPiscando();
 })
 
 //variavel de controle para saber estado da equação
 let ultimoResultado = false
 
-const visor = document.getElementById('visor')
+const visor = document.getElementById('visorInfo')
 //por meio dessa variavel visor o código dos calculos deve se basear
 let valoresEquacao = []
 
@@ -33,6 +34,7 @@ function numerosOperadores() { //função de botões e visor
                 valoresEquacao = []
                 ultimoResultado = false
                 visor.innerHTML = 0
+                atualizarVisor()
                 return
             }
             if (ultimoValorClicado == "DEL") {
@@ -76,12 +78,14 @@ function resultado() {
         else {
             return
         }
+        visorPiscando();
     }
 }
 
 function atualizarVisor() {
     const visorString = valoresEquacao.join('').replace(/\*/g, 'x').replace(/\./g, ',') // envia para o visor
     visor.innerHTML = visorString || '0'
+    visorPiscando();
 }
 
 function validarExpressao(exp) { //validar se a conta pode ser executada usando mathjs
@@ -100,4 +104,18 @@ function validarExpressao(exp) { //validar se a conta pode ser executada usando 
     }
 }
 
-//enquanto o visor for 0, piscar - setTimeInterval(() => {}, 1000)
+//enquanto o visor for 0, piscar - setInterval(() => {}, 1000)
+let intervalPiscar;
+function visorPiscando() {
+    clearInterval(intervalPiscar)
+
+    intervalPiscar = setInterval(() => {
+        const visorInfo = document.getElementById('visorInfo')
+        if (visorInfo.textContent === "0") {
+            visorInfo.style.opacity = visorInfo.style.opacity === "0" ? "1" : "0"; 
+        }
+        else {
+            visorInfo.style.opacity = "1"
+        }
+    },500)
+}
