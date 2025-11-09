@@ -32,7 +32,6 @@ function numerosOperadores() { //função de botões e visor
             if (ultimoValorClicado == "C") {
                 ultimoResultado = false
                 valoresEquacao = []
-                ultimoResultado = false
                 visor.innerHTML = 0
                 atualizarVisor()
                 return
@@ -40,7 +39,6 @@ function numerosOperadores() { //função de botões e visor
             if (ultimoValorClicado == "DEL") {
                 ultimoResultado = false
                 valoresEquacao.pop()
-                ultimoResultado = false
                 atualizarVisor()
                 console.log(valoresEquacao)
                 return
@@ -58,6 +56,7 @@ function numerosOperadores() { //função de botões e visor
         })
     })
 }
+//Dividir numerosOperadores() em outras funções menores
 
 function resultado() {
     if (valoresEquacao.length < 1) {
@@ -107,15 +106,16 @@ function validarExpressao(exp) { //validar se a conta pode ser executada usando 
 //enquanto o visor for 0, piscar - setInterval(() => {}, 1000)
 let intervalPiscar;
 function visorPiscando() {
-    clearInterval(intervalPiscar)
-
-    intervalPiscar = setInterval(() => {
-        const visorInfo = document.getElementById('visorInfo')
-        if (visorInfo.textContent === "0") {
-            visorInfo.style.opacity = visorInfo.style.opacity === "0" ? "1" : "0"; 
-        }
-        else {
-            visorInfo.style.opacity = "1"
-        }
-    },500)
+    const visorInfo = document.getElementById('visorInfo')
+    if (valoresEquacao.length > 0) {
+        visorInfo.style.opacity = "1"
+        clearInterval(intervalPiscar)
+        intervalPiscar = null
+        return
+    }
+    if (!intervalPiscar) {
+        intervalPiscar = setInterval(() => {
+            visorInfo.style.opacity = visorInfo.style.opacity === "0" ? "1" : "0";    
+        }, 550)
+    }
 }
